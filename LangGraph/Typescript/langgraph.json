@@ -1,0 +1,14 @@
+{
+  "node_version": "20",
+  "dockerfile_lines": [],
+  "dependencies": ["."],
+  "graphs": {
+    
+    "15-router-w-tools-condition": "./src/15-router-w-tools-condition/index.ts:graph",
+    "16-agents": "./src/16-agents/index.ts:graph",
+    "17-graph-w-runtime-configuration": "./src/17-graph-w-runtime-configuration/index.ts:graph",
+    "18-graph-w-recursion-limits": "./src/18-graph-w-recursion-limits/index.ts:graph"
+  },
+  "env": ".env"
+  
+}

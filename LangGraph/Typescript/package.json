@@ -1,0 +1,49 @@
+{
+  "name": "langgraph",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "studio": "npx @langchain/langgraph-cli dev",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev-1": "ts-node-dev --respawn src/1-simple-graph/index.ts",
+    "dev-2": "ts-node-dev --respawn src/2-graph-w-conditional-edge/index.ts",
+    "dev-3": "ts-node-dev --respawn src/3-graph-w-annotation-state/index.ts",
+    "dev-4": "ts-node-dev --respawn src/4-graph-w-adv-annotation-state/index.ts",
+    "dev-5": "ts-node-dev --respawn src/5-graph-w-adv-annotation-state-2/index.ts",
+    "dev-6": "ts-node-dev --respawn src/6-graph-w-zod-state/index.ts",
+    "dev-7": "ts-node-dev --respawn src/7-graph-w-zod-state-2/index.ts",
+    "dev-8": "ts-node-dev --respawn src/8-graph-w-multiple-schemas-annotation/index.ts",
+    "dev-9": "ts-node-dev --respawn src/9-graph-w-multiple-schemas-zod/index.ts",
+    "dev-10": "ts-node-dev --respawn src/10-merge-schema-annotation/index.ts",
+    "dev-11": "ts-node-dev --respawn src/11-prebuilt-messages-state-w-annotation/index.ts",
+    "dev-12": "ts-node-dev --respawn src/12-prebuilt-messages-state-w-zod/index.ts",
+    "dev-13": "ts-node-dev --respawn src/13-graph-w-llm-node/index.ts",
+    "dev-14": "ts-node-dev --respawn src/14-llm-router-chain/index.ts",
+    "dev-15": "ts-node-dev --respawn src/15-router-w-tools-condition/index.ts",
+    "dev-16": "ts-node-dev --respawn src/16-agents/index.ts",
+    "dev-17": "ts-node-dev --respawn src/17-graph-w-runtime-configuration/index.ts",
+    "dev-18": "ts-node-dev --respawn src/18-graph-w-recursion-limits/index.ts",
+    "dev-19": "ts-node-dev --respawn src/19-graph-w-persistence-threads-and-checkpoints/index.ts",
+    "dev-20": "ts-node-dev --respawn src/20-graph-w-long-term-memory/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.26",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@langchain/langgraph": "^0.2.74",
+    "@langchain/openai": "^0.5.11",
+    "dotenv": "^16.5.0",
+    "uuid": "^11.1.0",
+    "zod": "^3.25.42"
+  }
+}
