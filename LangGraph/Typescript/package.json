@@ -28,7 +28,10 @@
     "dev-17": "ts-node-dev --respawn src/17-graph-w-runtime-configuration/index.ts",
     "dev-18": "ts-node-dev --respawn src/18-graph-w-recursion-limits/index.ts",
     "dev-19": "ts-node-dev --respawn src/19-graph-w-persistence-threads-and-checkpoints/index.ts",
-    "dev-20": "ts-node-dev --respawn src/20-graph-w-long-term-memory/index.ts"
+    "dev-20": "ts-node-dev --respawn src/20-graph-w-long-term-memory/index.ts",
+    "dev-21": "ts-node-dev --respawn src/21-custom-routing-w-send/index.ts",
+    "dev-22": "ts-node-dev --respawn src/22-custom-routing-w-command/index.ts",
+    "dev-23": "ts-node-dev --respawn src/23-create-react-agent/index.ts"
   },
   "keywords": [],
   "author": "",

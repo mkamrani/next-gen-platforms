@@ -5,6 +5,8 @@ import {
   END,
   MessagesAnnotation,
   Send,
+  Annotation,
+  Command,
 } from "@langchain/langgraph";
 import {
   AIMessage,
@@ -26,9 +28,19 @@ const RouterOutput = z.object({
   route: z.enum(["positive", "negative"]),
 });
 
+const CustomMessagesAnnotation = Annotation.Root({
+  ...MessagesAnnotation.spec,
+  step: Annotation<number>({
+    default: () => 0,
+    reducer: (_, v) => v,
+  }),
+});
+
 // LLM Node
 // Nodes can be async functions too
-async function router(state: typeof MessagesAnnotation.State): Promise<Send> {
+async function routerNode(
+  state: typeof CustomMessagesAnnotation.State
+): Promise<Command> {
   console.log("Executing LLM Node");
   const model = baseModel.withStructuredOutput(RouterOutput);
 
@@ -38,16 +50,18 @@ async function router(state: typeof MessagesAnnotation.State): Promise<Send> {
   ]);
 
   console.log("Router result:", result);
-  if (result.route === "positive") {
-    return new Send("positive", { messages: state.messages }); // Now we have control over the state we pass to the node. Note: This doesn't change the state of the current node.
-  } else {
-    return new Send("negative", state);
-  }
+  return new Command({
+    update: {
+      messages: state.messages,
+      step: state.step + 1,
+    },
+    goto: result.route === "positive" ? "positive" : "negative",
+  });
 }
 
 async function positiveNode(
-  state: typeof MessagesAnnotation.State
-): Promise<typeof MessagesAnnotation.State> {
+  state: typeof CustomMessagesAnnotation.State
+): Promise<typeof CustomMessagesAnnotation.State> {
   console.log("Executing Positive Node");
 
   const result = await baseModel.invoke([
@@ -59,12 +73,13 @@ async function positiveNode(
 
   return {
     messages: [result],
+    step: state.step + 1,
   };
 }
 
 async function negativeNode(
-  state: typeof MessagesAnnotation.State
-): Promise<typeof MessagesAnnotation.State> {
+  state: typeof CustomMessagesAnnotation.State
+): Promise<typeof CustomMessagesAnnotation.State> {
   console.log("Executing Negative Node");
 
   const result = await baseModel.invoke([
@@ -74,16 +89,19 @@ async function negativeNode(
     ...state.messages,
   ]);
 
-  return { messages: [result] };
+  return { messages: [result], step: state.step + 1 };
 }
 
 // Initialize the graph
-const graphBuilder = new StateGraph(MessagesAnnotation)
+const graphBuilder = new StateGraph(CustomMessagesAnnotation)
   // Add our node
+  .addNode("router", routerNode, {
+    ends: ["positive", "negative"],
+  })
   .addNode("positive", positiveNode)
   .addNode("negative", negativeNode)
   // Add edges to connect the nodes in sequence
-  .addConditionalEdges(START, async (state) => router(state))
+  .addEdge(START, "router")
   .addEdge("positive", END)
   .addEdge("negative", END);
 
