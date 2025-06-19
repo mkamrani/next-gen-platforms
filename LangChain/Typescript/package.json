@@ -1,0 +1,41 @@
+{
+  "name": "typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev-1": "ts-node-dev --respawn src/1-basic-invokation/index.ts",
+    "dev-2": "ts-node-dev --respawn src/2-messages/index.ts",
+    "dev-3": "ts-node-dev --respawn src/3-system-message/index.ts",
+    "dev-4": "ts-node-dev --respawn src/4-tool-calling/index.ts",
+    "dev-5": "ts-node-dev --respawn src/5-tool-calling-fed-to-llm/index.ts",
+    "dev-6": "ts-node-dev --respawn src/6-structured-output-zod-schema/index.ts",
+    "dev-7": "ts-node-dev --respawn src/7-structured-output-json-schema/index.ts",
+    "dev-8": "ts-node-dev --respawn src/8-structured-output-tool-calling/index.ts",
+    "dev-9": "ts-node-dev --respawn src/9-prompt-templates/index.ts",
+    "dev-10": "ts-node-dev --respawn src/10-rag-embeddings/index.ts",
+    "dev-11": "ts-node-dev --respawn src/11-rag-vector-stores/index.ts",
+    "dev-12": "ts-node-dev --respawn src/12-rag-vector-stores-retriever/index.ts",
+    "dev-13": "ts-node-dev --respawn src/13-rag-complete-flow/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^22.15.29",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.57",
+    "@langchain/openai": "^0.5.11",
+    "dotenv": "^16.5.0",
+    "langchain": "^0.3.27",
+    "zod": "^3.25.46"
+  }
+}
